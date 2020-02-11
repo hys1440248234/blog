@@ -1,0 +1,25 @@
+## 目录结构
+
+- public 静态资源
+- src 
+    - api 网络处理相关代码
+    - assets 图片、文件等资源
+    - components 业务组件
+    - router 路由配置
+    - store vuex 配置
+        - modules vuex模块
+        - index.js vuex入口
+    - styles sass 代码
+        - config.scss  常量、初始值
+        - function 函数
+        - index.scss 全局通用样式
+        - mixin.scss 全局 mixin
+        - transition.scss vue transition 动画
+        - variables.scss 全局变量
+    - utils 项目全局的工具函数、自定义指令
+    - views 页面代码
+    - App.vue
+    - main.js
+- tests 测试代码
+    - e2e 端到端测试
+    - unit 单元测试

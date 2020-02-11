@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/**
+ * @desc 全局通用样式
+ * @author Main丶侯
+ * @date 2020-1-28
+ */
+@import './mixin.scss';
+@import './transition.scss';
+
+/* 左浮动
+ -------------------------- */
+
+.fl {
+    float: left;
+}
+
+/* 右浮动
+-------------------------- */
+.fr {
+    float: right;
+}

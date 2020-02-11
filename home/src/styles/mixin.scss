@@ -1,0 +1,85 @@
+@charset "UTF-8";
+/**
+ * @desc 混合
+ * @author Main丶侯
+ * @date 2020-1-28
+ */
+
+@import 'function.scss';
+@import 'variables.scss';
+
+/* 清除浮动
+ -------------------------- */
+@mixin clearfix {
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+}
+
+/* BEM
+ -------------------------- */
+@mixin b($block) {
+    $B: $block !global;
+
+    .#{$B} {
+        @content;
+    }
+}
+
+@mixin e($element) {
+    $E: $element !global;
+    $selector: &;
+    $currentSelector: '';
+    @each $unit in $element {
+        $currentSelector: #{$currentSelector +
+            '.' +
+            $B +
+            $element-separator +
+            $unit +
+            ','};
+    }
+
+    @if hitAllSpecialNestRule($selector) {
+        @at-root {
+            #{$selector} {
+                #{$currentSelector} {
+                    @content;
+                }
+            }
+        }
+    } @else {
+        @at-root {
+            #{$currentSelector} {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin m($modifier) {
+    $selector: &;
+    $currentSelector: '';
+    @each $unit in $modifier {
+        $currentSelector: #{$currentSelector +
+            & +
+            $modifier-separator +
+            $unit +
+            ','};
+    }
+
+    @at-root {
+        #{$currentSelector} {
+            @content;
+        }
+    }
+}
+
+@mixin when($state) {
+    @at-root {
+        &.#{$state-prefix + $state} {
+            @content;
+        }
+    }
+}
