@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import {
   Breadcrumb, BreadcrumbItem, Row, FormItem, Form, Input, Tag, Button, Table, TableColumn
-  , Menu, MenuItem, Submenu, Dropdown, DropdownItem, DropdownMenu, Upload, Dialog
+  , Menu, MenuItem, Submenu, Dropdown, DropdownItem, DropdownMenu, Upload, Dialog, Pagination
 } from 'element-ui'
 import message from './plugins/message'
 import '@/styles/index.scss' // 全局 css
@@ -29,6 +29,7 @@ Vue.component(DropdownItem.name, DropdownItem)
 Vue.component(DropdownMenu.name, DropdownMenu)
 Vue.component(Upload.name, Upload)
 Vue.component(Dialog.name, Dialog)
+Vue.component(Pagination.name, Pagination)
 
 Vue.use(message)
 

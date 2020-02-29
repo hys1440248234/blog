@@ -95,7 +95,8 @@ class ArticleController extends Controller {
   async count() {
     const count = await this.ctx.service.article.countArticle();
     this.ctx.body = JSON.stringify({
-      count,
+      data: count,
+      code: 20000,
     });
   }
 

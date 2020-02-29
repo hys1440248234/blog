@@ -25,7 +25,7 @@ export default new Router({
       component: Layout,
       children: [{
         path: '/',
-        component: () => import(/* webpackChunkName: "group-noIndex" */'@/views/About.vue'),
+        component: () => import(/* webpackChunkName: "About" */'@/views/About.vue'),
         name: 'about',
         meta: {
           title: '关于我·Main、侯的个人博客'
@@ -37,7 +37,7 @@ export default new Router({
       component: Layout,
       children: [{
         path: '/',
-        component: () => import(/* webpackChunkName: "group-noIndex" */'@/views/MyArticle.vue'),
+        component: () => import(/* webpackChunkName: "MyArticle" */'@/views/MyArticle.vue'),
         name: 'article',
         meta: {
           title: '文章·Main、侯的个人博客'
@@ -50,7 +50,7 @@ export default new Router({
       meta: {
         title: '页面没找到·Main、侯的个人博客'
       },
-      component: () => import(/* webpackChunkName: "group-noIndex" */'./views/404.vue')
+      component: () => import(/* webpackChunkName: "404" */'./views/404.vue')
     },
     {
       path: '*',

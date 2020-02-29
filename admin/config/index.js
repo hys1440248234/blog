@@ -63,7 +63,7 @@ module.exports = {
      */
     // assetsPublicPath: 'https://blog-1257169527.file.myqcloud.com/',
     assetsPublicPath: '/',
-
+    productionGzip: true, // 默认不开启gizp
     /**
      * Source Maps
      */

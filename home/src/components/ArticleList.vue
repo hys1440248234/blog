@@ -11,7 +11,7 @@
           <el-col :span="12" :xs="24" :class="index%2==0? 'fl':'fr'">
             <router-link :to="toString(item.id)">
               <figure class="img-box">
-                <img :src="item.image_url" class="image">
+                <img v-lazy="item.image_url" class="image">
               </figure>
             </router-link>
           </el-col>
@@ -42,68 +42,50 @@
       </el-col>
     </el-row>
     <el-row type="flex" justify="center">
-      <div style="margin-top: 18px;">
-        <el-pagination
-          :current-page.sync="currentPage"
-          :page-size="pageNum"
-          layout="prev, pager, next, jumper"
-          :total="total"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
-      </div>
+      <el-pagination
+        :current-page="currentPage4"
+        :page-size="limit"
+        :total="count"
+        background
+        layout="prev, pager, next"
+        @current-change="handleCurrentChange"
+      />
     </el-row>
   </div>
 </template>
 
 <script>
 
+import { getArticleList, articleCount } from '@/api/article'
 export default {
   name: 'List',
   data() {
     return {
       articles: [],
-      currentPage: 1, // 当前页
-      total: 0, // 文章总数
-      pageNum: 10 // 每页的文章个数
+      limit: 5,
+      count: 0
     }
   },
-  mounted() {
-    this.getDate()
+  created() {
+    this.getData(0)
   },
   methods: {
-    // 获得文章数据
-    getDate() {
-      axios.get(`/api/article?limit=${this.pageNum}&offset=${(this.currentPage - 1) * this.pageNum}`)
-        .then((response) => {
-          if (!response.data.data) {
-            this.$message({
-              type: 'info',
-              message: '没有数据'
-            })
-          } else {
-            this.articles = response.data.data
-          }
-        })
-        .catch((e) => {
-          this.$message({
-            type: 'error',
-            message: e.data.message ? e.data.message : '服务器错误'
-          })
-        })
-      // 文章总数
-      axios.get('/api/articleCount')
-        .then((response) => {
-          if (response.data) {
-            this.total = response.data.count
-          }
-        })
-        .catch((e) => {
-          this.$message({
-            type: 'error',
-            message: e.data.message ? e.data.message : '服务器错误'
-          })
-        })
+    getData(offset) {
+      getArticleList({
+        limit: this.limit,
+        offset
+      }).then(res => {
+        this.articles = this.formatDate(res.data)
+      })
+      articleCount().then(res => {
+        this.count = res.data
+      })
+    },
+    formatDate(value) {
+      return value.filter(function(item) {
+        item.create_time = new Date(item.create_time).toLocaleDateString()
+        return item
+      })
     },
     toString(id) {
       return `/article/${id}`
@@ -111,13 +93,9 @@ export default {
     dateToLocal(time) {
       return new Date(time).toLocaleString()
     },
-    handleSizeChange(val) {
-      this.currentPage = val
-      this.getDate()
-    },
     handleCurrentChange(val) {
-      this.currentPage = val
-      this.getDate()
+      this.getData((val - 1) * this.limit)
+      console.log(`当前页: ${val}`)
     }
   }
 }

@@ -42,6 +42,14 @@ export function deleteArticle(query) {
   })
 }
 
+// 获取文章总数
+export function articleCount() {
+  return request({
+    url: `/articleCount`,
+    method: 'get'
+  })
+}
+
 // 上传文件
 export function upload(data) {
   return request(data)

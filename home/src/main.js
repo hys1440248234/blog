@@ -7,6 +7,7 @@ import Highlight from './plugins/hightlight'
 import App from './App.vue'
 import router from './router'
 import store from './store/index'
+import VueLazyload from 'vue-lazyload'
 
 Vue.component(Card.name, Card)
 Vue.component(Col.name, Col)
@@ -22,6 +23,7 @@ Vue.component(Pagination.name, Pagination)
 
 Vue.use(message)
 Vue.use(Highlight)
+Vue.use(VueLazyload)
 
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
