@@ -25,6 +25,7 @@
   - [ ] 懒加载
 - 前端
   - [x] 使用 SCSS
+  - [x] loading
   - [ ] 单元测试
   - [ ] APP Shell 骨架屏
   - [ ] 打包自动上传文件至 CDN（非必须）
@@ -35,7 +36,7 @@
   - [ ] GraphQL
   - [ ] SSR（非必须）
 - 数据库
-  - [ ] SQL 优化
+  - [ ] MysqlSQL TO MongoDB
   - [ ] Redis 缓存（非必须）
 
 ### 下载&&安装
