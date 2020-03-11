@@ -5,7 +5,11 @@
 <script>
 
 export default {
-  name: 'App'
+  name: 'App',
+  created() {
+    console.log(performance.getEntriesByType('navigation'))
+    // 存入 mongo
+  }
 }
 </script>
 

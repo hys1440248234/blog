@@ -1,46 +1,59 @@
 <template>
   <div>
-    <el-row
-      v-for="(item, index) in articles"
-      :key="index"
-      type="flex"
-      justify="center"
+    <div
+      v-loading="true"
+      element-loading-text="拼命加载中"
+      element-loading-spinner="el-icon-loading"
+      element-loading-background="rgba(0, 0, 0, 0)"
+      style="min-height:100vh;"
     >
-      <el-col :xs="22" :sm="20" :md="17" :lg="15">
-        <el-card class="card" shadow="hover" body-style="padding:0;">
-          <el-col :span="12" :xs="24" :class="index%2==0? 'fl':'fr'">
-            <router-link :to="toString(item.id)">
-              <figure class="img-box">
-                <img v-lazy="item.image_url" class="image">
-              </figure>
-            </router-link>
-          </el-col>
-          <el-col :span="12" :xs="24" class="article-message">
-            <div>
-              <time class="time">{{ dateToLocal(item.create_time) }}</time>
-            </div>
-            <h1>
+      <el-row
+        v-for="(item, index) in articles"
+        :key="index"
+        type="flex"
+        justify="center"
+      >
+        <el-col :xs="22" :sm="20" :md="17" :lg="15">
+          <el-card class="card" shadow="hover" body-style="padding:0;">
+            <el-col :span="12" :xs="24" :class="index%2==0? 'fl':'fr'">
               <router-link :to="toString(item.id)">
-                {{ item.title }}
+                <figure class="img-box">
+                  <img v-lazy="item.image_url" class="image">
+                </figure>
               </router-link>
-            </h1>
-            <div class="summary">
-              {{ item.summary }}
+            </el-col>
+            <el-col
+              :span="12"
+              :xs="24"
+              class="article-message"
+            >
+              <div>
+                <time class="time">{{ dateToLocal(item.create_time) }}</time>
+              </div>
+              <h1>
+                <router-link :to="toString(item.id)">
+                  {{ item.title }}
+                </router-link>
+              </h1>
+              <div class="summary">
+                {{ item.summary }}
+              </div>
+              <div class="info">
+                <span><i class="el-icon-star-off">{{ item.view }} pv</i></span>
+                <span><i class="el-icon-star-off">{{ item.like }} like</i></span>
+                <span><i class="el-icon-star-off">{{ item.tag }}</i></span>
+              </div>
+            </el-col>
+            <div class="clearfix" :class="index%2==0?'article-all-l':'article-all-r'">
+              <router-link :to="toString(item.id)">
+                <i class="el-icon-more" />
+              </router-link>
             </div>
-            <div class="info">
-              <span><i class="el-icon-star-off">{{ item.view }} pv</i></span>
-              <span><i class="el-icon-star-off">{{ item.like }} like</i></span>
-              <span><i class="el-icon-star-off">{{ item.tag }}</i></span>
-            </div>
-          </el-col>
-          <div class="clearfix" :class="index%2==0?'article-all-l':'article-all-r'">
-            <router-link :to="toString(item.id)">
-              <i class="el-icon-more" />
-            </router-link>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
+
     <el-row type="flex" justify="center">
       <el-pagination
         :current-page="currentPage4"
@@ -63,7 +76,8 @@ export default {
     return {
       articles: [],
       limit: 5,
-      count: 0
+      count: 0,
+      loading: true
     }
   },
   created() {
@@ -79,6 +93,7 @@ export default {
       })
       articleCount().then(res => {
         this.count = res.data
+        this.loading = false
       })
     },
     formatDate(value) {
