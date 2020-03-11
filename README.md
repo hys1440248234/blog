@@ -36,7 +36,7 @@
   - [ ] GraphQL
   - [ ] SSR（非必须）
 - 数据库
-  - [ ] MysqlSQL TO MongoDB
+  - [ ] MySQL TO MongoDB
   - [ ] Redis 缓存（非必须）
 
 ### 下载&&安装
