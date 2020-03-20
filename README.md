@@ -6,11 +6,13 @@
 
 - 前端
   - Vue.js
-  - Element
+  - ElementUI
 - 后端
   - Node.js
+  - Nest.js
 - 数据库
-  - mysql
+  - MySQL
+  - TypeORM
 
 ## 功能
 
@@ -28,16 +30,17 @@
   - [x] loading
   - [ ] 单元测试
   - [ ] APP Shell 骨架屏
-  - [ ] 打包自动上传文件至 CDN（非必须）
+  - [ ] 打包自动上传文件至 CDN
 - 后端
   - [x] 异常处理，JSDoc
   - [x] 密码的加密解密
   - [ ] 后端字段验证 validate
   - [ ] GraphQL
-  - [ ] SSR（非必须）
+  - [ ] 服务器端渲染 SSR
 - 数据库
-  - [ ] MySQL TO MongoDB
-  - [ ] Redis 缓存（非必须）
+  - [ ] 数据库优化
+  - [ ] TypeORM
+  - [ ] Redis 缓存
 
 ### 下载&&安装
 
