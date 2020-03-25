@@ -1,12 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Render } from '@nestjs/common';
 import { ArticleService } from './article.service';
 
 @Controller('')
 export class ArticleController {
-    constructor(private readonly articleService: ArticleService) {}
+  constructor(private readonly articleService: ArticleService) { }
 
-    @Get('/')
-    getHello(): string {
-      return this.articleService.getHello();
-    }
+  @Get('/')
+  @Render('index')
+  home() {
+    return this.articleService.home();
+  }
 }

@@ -41,15 +41,6 @@
   - [ ] 数据库优化
   - [ ] TypeORM
   - [ ] Redis 缓存
-
-### 下载&&安装
-
-- `git clone https://github.com/hys1440248234/blog.git`
-- 在 node 目录下 `npm install`
-
-### 运行
-
-- 在 node 目录下 `npm run dev`
   
 ## 问题&&讨论
 
