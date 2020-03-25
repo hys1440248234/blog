@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BeforeUpdate } from 'typeorm';
 
 @Entity()
 export class User {
@@ -20,9 +20,14 @@ export class User {
     @Column('varchar', {length: 200})
     avatar: string;
 
-    @Column('datetime')
+    @Column({type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
     createTime: Date;
 
-    @Column('datetime')
+    @Column({type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
     updateTime: Date;
+
+    @BeforeUpdate()
+    updateTimestamp() {
+        this.updateTime = new Date();
+    }
 }

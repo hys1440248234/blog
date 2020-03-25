@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, BeforeUpdate } from 'typeorm';
 import { Tag } from 'src/tag/tag.entity';
 
 @Entity()
@@ -27,11 +27,16 @@ export class Article {
     @Column('int')
     like: number;
 
-    @Column('datetime')
+    @Column({type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
     createTime: Date;
 
-    @Column('datetime')
+    @Column({type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})
     updateTime: Date;
+
+    @BeforeUpdate()
+    updateTimestamp() {
+        this.updateTime = new Date();
+    }
 
     @OneToMany(type => Tag, tag => tag.article)
     tags: Tag[];
