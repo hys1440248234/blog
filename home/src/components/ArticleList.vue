@@ -18,7 +18,7 @@
             <el-col :span="12" :xs="24" :class="index%2==0? 'fl':'fr'">
               <router-link :to="toString(item.id)">
                 <figure class="img-box">
-                  <img v-lazy="item.image_url" class="image">
+                  <img v-lazy="item.imageUrl" class="image">
                 </figure>
               </router-link>
             </el-col>
@@ -28,7 +28,7 @@
               class="article-message"
             >
               <div>
-                <time class="time">{{ dateToLocal(item.create_time) }}</time>
+                <time class="time">{{ dateToLocal(item.createTime) }}</time>
               </div>
               <h1>
                 <router-link :to="toString(item.id)">
@@ -98,7 +98,7 @@ export default {
     },
     formatDate(value) {
       return value.filter(function(item) {
-        item.create_time = new Date(item.create_time).toLocaleDateString()
+        item.createTime = new Date(item.createTime).toLocaleDateString()
         return item
       })
     },

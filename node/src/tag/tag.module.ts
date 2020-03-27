@@ -10,4 +10,4 @@ import { Tag } from './tag.entity';
     controllers: [TagController],
 })
 
-export class TagMoudle {}
+export class TagModule {}

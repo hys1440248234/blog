@@ -10,4 +10,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     controllers: [ArticleController],
 })
 
-export class ArticleMoudle {}
+export class ArticleModule {}

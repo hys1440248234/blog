@@ -4,11 +4,11 @@
       <h1>{{ article.title }}</h1>
     </div>
     <div class="info">
-      <el-tag size="mini">
-        {{ article.tag_id }}
-      </el-tag>
+      <!-- <el-tag size="mini">
+        {{ article.tag }}
+      </el-tag> -->
       <time title="时间" class="time">
-        <i class="el-icon-time" />&nbsp;{{ time(article.create_time) }}
+        <i class="el-icon-time" />&nbsp;{{ time(article.createTime) }}
       </time>
       <span class="view">{{ article.view }} PV</span>
       <span class="share">
@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import { articleLike } from '@/api/article'
+
 export default {
   name: 'MyArticle',
   data() {
@@ -112,6 +114,7 @@ export default {
       const key = `${this.$route.params.id}like`.toString()
       const isLike = localStorage.getItem(key)
       if (!isLike) {
+        articleLike
         localStorage.setItem(key, this.$route.params.id)
         axios.get('/api/like', {
           params: {

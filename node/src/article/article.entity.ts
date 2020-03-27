@@ -21,10 +21,10 @@ export class Article {
     @Column('varchar', {length: 200})
     imageUrl: string;
 
-    @Column('int')
+    @Column({type: 'int', default: 0})
     view: number;
 
-    @Column('int')
+    @Column({type: 'int', default: 0})
     like: number;
 
     @Column({type: 'datetime', default: () => 'CURRENT_TIMESTAMP'})

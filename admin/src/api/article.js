@@ -26,18 +26,18 @@ export function getOneArticle(id) {
 }
 
 // 更新文章
-export function updateArticle(query) {
+export function updateArticle(param) {
   return request({
-    url: `/article/${query.id}`,
+    url: `/article/${param.id}`,
     method: 'put',
-    data: query
+    data: param
   })
 }
 
 // 删除文章
-export function deleteArticle(query) {
+export function deleteArticle(param) {
   return request({
-    url: `/article/${query.id}`,
+    url: `/article/${param.id}`,
     method: 'delete'
   })
 }

@@ -14,27 +14,11 @@
         </el-form-item>
 
         <el-form-item label="文章内容" class="hidden">
-          <el-input v-model="form.content_text" name="content" type="textarea" placeholder="文章内容" />
+          <el-input v-model="form.contentText" name="content" type="textarea" placeholder="文章内容" />
         </el-form-item>
 
         <el-form-item label="文章概述" prop="summary">
           <el-input v-model="form.summary" name="summary" type="textarea" placeholder="文章概述" />
-        </el-form-item>
-
-        <el-form-item label="文章标签" prop="tag" required>
-          <el-input v-model="form.tag" placeholder="文章标签"/>
-        </el-form-item>
-
-        <el-form-item>
-          <el-upload
-            :on-change="handleChange"
-            :on-remove="handleRemove"
-            :auto-upload="false"
-            :limit="1"
-            list-type="picture-card"
-          >
-            <i class="el-icon-plus"/>
-          </el-upload>
         </el-form-item>
 
         <el-form-item>
@@ -45,7 +29,7 @@
       </el-form>
     </el-row>
 
-    <mavon-editor ref="md" v-model="content_text" class="editor" @change="getHtml" @imgAdd="imgAdd" @imgDel="imgDel" />
+    <mavon-editor ref="md" v-model="contentText" class="editor" @change="getHtml" @imgAdd="imgAdd" @imgDel="imgDel" />
   </el-row>
 </template>
 
@@ -68,16 +52,15 @@ export default {
   data() {
     return {
       img_file: {}, // 图片文件
-      content_text: '', // 文章内容临时存储
+      contentText: '', // 文章内容临时存储
       inputVisible: false, // input 是否可见
       inputValue: '',
       form: {
         content: '', // 文章内容
         summary: '', // 文章概述
         title: '', // 文章标题
-        tag: '', // 文章标签
-        content_text: '', // 文章内容 纯文本
-        image_url: ''
+        contentText: '', // 文章内容 纯文本
+        imageUrl: ''
       },
       rules: {
         title: {
@@ -90,12 +73,6 @@ export default {
           required: true,
           message: '文章概述是必须的',
           trigger: 'blur'
-        },
-        tag: {
-          type: 'string',
-          required: true,
-          message: '文章标签是必须的',
-          trigger: 'blur'
         }
       }
     }
@@ -104,7 +81,7 @@ export default {
     if (this.isCreateOrUpdate === false) {
       getOneArticle(this.$route.params.id).then(res => {
         this.form = res.data
-        this.content_text = this.form.content_text
+        this.content_text = this.form.contentText
       })
     }
   },
@@ -112,7 +89,7 @@ export default {
     // 获得编辑器里的内容
     getHtml(val, render) {
       this.form.content = render
-      this.form.content_text = val
+      this.form.contentText = val
     },
     // 添加图片
     imgAdd(pos, $file) {

@@ -24,3 +24,13 @@ export function articleCount() {
   })
 }
 
+// 喜欢一篇文章
+export function articleLike() {
+  return request({
+    url: `/like`,
+    method: 'get'
+  })
+}
+
+// 浏览一篇文章
+

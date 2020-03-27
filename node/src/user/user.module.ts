@@ -10,4 +10,4 @@ import { UserController } from './user.controller';
     controllers: [UserController],
 })
 
-export class UserMoudle {}
+export class UserModule {}

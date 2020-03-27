@@ -5,6 +5,10 @@ import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.enableCors({
+    origin: 'http://localhost:9528',
+    methods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  });
   app.useStaticAssets(join(__dirname, '..', 'publicpublic'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.set('view engine', 'html');

@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-table :data="tableData" border stripe class="table">
-      <el-table-column :index="1" fixed="left" type="index" label="序号" align="center" width="60" />
-      <el-table-column prop="create_time" label="发布日期" align="center" />
+      <el-table-column prop="id" fixed="left" label="序号" align="center" width="60" />
+      <el-table-column prop="createTime" label="发布日期" align="center" />
       <el-table-column prop="title" label="文章标题" align="center" />
       <el-table-column prop="like" label="喜欢" align="center" />
       <el-table-column prop="view" label="查看数量" align="center" width="100" />
@@ -60,7 +60,7 @@ export default {
     },
     formatDate(value) {
       return value.filter(function(item) {
-        item.create_time = new Date(item.create_time).toLocaleDateString()
+        item.createTime = new Date(item.createTime).toLocaleDateString()
         return item
       })
     },
@@ -71,18 +71,13 @@ export default {
     // 点击删除按钮跳删除对应的文章
     handleDelete(index, row) {
       deleteArticle({ id: row.id }).then(res => {
-        this.$message({
-          message: res.message ? res.message : '删除成功',
-          type: res.code === 20000 ? 'success' : 'error'
-        })
-        if (res.data) {
+        if (res.code === 20000) {
           this.tableData.splice(index, 1)
         }
       })
     },
     handleCurrentChange(val) {
       this.getData((val - 1) * this.limit)
-      console.log(`当前页: ${val}`)
     }
   }
 }
